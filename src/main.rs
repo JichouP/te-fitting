@@ -8,13 +8,14 @@ const N1: f64 = 1.08e16;
 const N2: f64 = 6.52e15;
 const RHS: f64 = A1 * N1 / (A2 * N2);
 const EPS: f64 = 10.0 * f64::EPSILON;
+const MAX_ITERATIONS: usize = 10000;
 
 fn main() {
     let mut te: f64 = 1.0;
     let mut x: f64 = 1.0;
     let mut count: usize = 0;
     while x.abs() > EPS {
-        if count >= 10000 {
+        if count >= MAX_ITERATIONS {
             panic!(
                 "Newton's method failed to converge. Please check the initial values and try again. {x}, {te}"
             )
