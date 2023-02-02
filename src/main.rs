@@ -9,13 +9,15 @@ extern crate prettytable;
 // const A1: [f64; 5] = [2.36e+05, 1.90e+05, 9.2e+04, 4.23e+07, 1.49e+07];
 const A1: f64 = 5.7718e7;
 const A2: f64 = 4.87e7;
-const N1: f64 = 1.08e16;
-const N2: f64 = 6.52e15;
+// const N1: f64 = 1.08e16;
+// const N2: f64 = 6.52e15;
+const N1: f64 = 9.25e9;
+const N2: f64 = 7.61e9;
 const RHS: f64 = A1 * N1 / (A2 * N2);
 const EPS: f64 = 10.0 * f64::EPSILON;
 // const EPS: f64 = 1.0e-4;
 const MAX_ITERATIONS: usize = 10000;
-const EVS: &[f64] = &[30.0, 40.0, 50.0, 60.0, 70.0];
+const EVS: &[f64] = &[30.0, 40.0, 60.0];
 const OUTPUT_FAILED: bool = false;
 
 fn main() {
@@ -88,6 +90,9 @@ fn create_matrix(evs: Vec<f64>) -> Vec<Vec<(LineSpec, LineSpec)>> {
             for i in 0..len {
                 for j in 0..len {
                     if i == j {
+                        continue;
+                    }
+                    if i != 5 || j != 0 {
                         continue;
                     }
                     let left: LineSpec = (i + 1, cs_list[i]);
